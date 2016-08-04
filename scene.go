@@ -118,7 +118,7 @@ func (S *Scene) Clear() {
 	S.App.GetSurface().FillRect(&S.Rect, 0xff242424)
 }
 
-func (S *Scene) removeLayer(name string) {
+func (S *Scene) RemoveLayer(name string) {
 	S.Lock()
 	defer S.Unlock()
 	_, ok := S.Layers[name]
