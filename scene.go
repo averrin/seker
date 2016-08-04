@@ -13,11 +13,6 @@ type Geometry struct {
 	Height int32
 }
 
-type Application interface {
-	GetSurface() *sdl.Surface
-	GetWindow() *sdl.Window
-}
-
 type Scene struct {
 	sync.Mutex
 	App         Application
