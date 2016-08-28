@@ -28,7 +28,7 @@ func (F *Font) Draw(text string, color string) (*sdl.Surface, error) {
 }
 
 // GetFont with size
-func GetFontWithCache(fname string, size int) *Font {
+func GetFont(fname string, size int) *Font {
 	if cache == nil {
 		cache = map[string]map[int]*Font{}
 	}
@@ -41,18 +41,12 @@ func GetFontWithCache(fname string, size int) *Font {
 	} else {
 		cache[fname] = map[int]*Font{}
 	}
-	cwd, _ := filepath.Abs(filepath.Dir(os.Args[0]))
-	dir := filepath.Join(cwd, "fonts")
-	font, _ := ttf.OpenFont(path.Join(dir, fname), size)
-	fo := new(Font)
-	fo.Name = fname
-	fo.Size = size
-	fo.Font = font
+	fo := CreateFont(fname, size)
 	cache[fname][size] = fo
 	return fo
 }
 
-func GetFont(fname string, size int) *Font {
+func CreateFont(fname string, size int) *Font {
 	cwd, _ := filepath.Abs(filepath.Dir(os.Args[0]))
 	dir := filepath.Join(cwd, "fonts")
 	font, _ := ttf.OpenFont(path.Join(dir, fname), size)
